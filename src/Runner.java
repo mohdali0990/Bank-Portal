@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Runner {
     public static void main(String[] args) {
-
+        System.out.println("jusst assded for ");
 
         Scanner scanner = new Scanner(System.in);
         List<Customer> custList = new ArrayList<>();
@@ -62,25 +62,23 @@ public class Runner {
 
                 // System.out.println(Arrays.toString(custList.toArray()));////
             } else if (inputFirstQuestion == 2) {
-                Customer tempCust = new Customer();
+                //left it here for a reason.
+                //Customer tempCust = new Customer();
                 System.out.println("Please enter username");
                 String inputUsername = scanner.nextLine();
                 System.out.println("Please enter 4 digit pin");
                 int inputUserPin = scanner.nextInt();
                 scanner.nextLine();
-                tempCust.setUserId(inputUsername);
-                tempCust.setPinNumber(inputUserPin);
-
-                for (Customer verifyIfUsernameAndUserpinExist : custList) {
-                    System.out.println(verifyIfUsernameAndUserpinExist);
-                    if (verifyIfUsernameAndUserpinExist.getUserId().equals(inputUsername)&&verifyIfUsernameAndUserpinExist.getPinNumber()==inputUserPin) {
+                for (Customer cust : custList) {
+                    System.out.println(cust);
+                    if (cust.getUserId().equals(inputUsername) && cust.getPinNumber()==inputUserPin) {
                        System.out.println("hello, I have found you in the system");
                         System.out.println("which account would you like to access today.\nPress 1 for checking\nPress 2 savings ?");
                         int checkingOrSaving = scanner.nextInt();
                         scanner.nextLine();
                         if(checkingOrSaving==1){
+                            // get existing checking account associated with this customer.
                             CheckingAccount checkingAccountCust1 =new CheckingAccount();
-                            //tempCust.setCheckingAccount(checkingAccountCust1);
                             System.out.println("what would like to do with your checking account today ?");
                             System.out.println("press 1 for deposit\npress 2 for withdrawal\npress 3 to check balance");
                             int depositOrWithdrawalOrCheckbalance = scanner.nextInt();
@@ -88,7 +86,9 @@ public class Runner {
                                 System.out.println("How much money would you like to deposit ?");
                                 double moneyDeposit = scanner.nextDouble();
                                 checkingAccountCust1.deposit(moneyDeposit);
+                                //think it through. watch bahavior when execute line 80 and when line 90 executes.
                                 checkingAccountCust1.deposit(depositOrWithdrawalOrCheckbalance);
+                                //you need to make changes to this customer.you dont need to make something else or someone else.
                                 tempCust.setCheckingAccount(checkingAccountCust1);
                                 //System.out.println("Your current balance is $" + tempCust.checkingAccount.getCurrentBalanceAmount());
                                 System.out.println("Your current balance is $" + checkingAccountCust1.getCurrentBalanceAmount());
