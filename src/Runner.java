@@ -36,28 +36,29 @@ public class Runner {
                 customer.setFirstName(newFirstname);
                 customer.setLastName(newlastName);
                 scanner.nextLine();
-                System.out.println("Thank You Making an account");
 
-                System.out.println("which account would you like to make:\nPress 1 for Checking\nPress 2 for Savings");
+                System.out.println("Which account would you like to make:\nPress 1 for Checking\nPress 2 for Savings");
                 int checkingOrSavingsAccount = scanner.nextInt();
 
                 if (checkingOrSavingsAccount==1) {
                     CheckingAccount checkingAccount = new CheckingAccount();
-                    System.out.println("what amount would you like to add?");
+                    System.out.println("What amount would you like to add?");
                     double startingCheckingAmount = scanner.nextDouble();
                     checkingAccount.setCurrentBalanceAmount(startingCheckingAmount);
                     customer.setCheckingAccount(checkingAccount);
                     custList.add(customer);
+                    System.out.println("Thank you for making a new checking account. ");
 
                 } else if (checkingOrSavingsAccount==2) {
                     SavingsAccount savingsAccount = new SavingsAccount();
-                    System.out.println("what amount would you like to add?");
+                    System.out.println("What amount would you like to add?");
                     double startingSavingAmount = scanner.nextDouble();
                     savingsAccount.setCurrentBalanceAmount(startingSavingAmount);
                     customer.setSavingsAccount(savingsAccount);
                     custList.add(customer);
+                    System.out.println("Thank you for making a new savings account. ");
                 } else {
-                    System.out.println("you have entered the wrong key.");
+                    System.out.println("You have entered the wrong key.");
                 }
 
             } else if (inputFirstQuestion == 2) {
@@ -71,14 +72,14 @@ public class Runner {
                 for (Customer cust : custList) {
                     System.out.println(cust);
                     if (cust.getUserId().equals(inputUsername) && cust.getPinNumber() == inputUserPin) {
-                        System.out.println("hello, I have found you in the system");
-                        System.out.println("which account would you like to access today.\nPress 1 for checking\nPress 2 savings ?");
+                        System.out.println("Hello,"+ cust.getFirstName()+" I have found you in the system.");
+                        System.out.println("Which account would you like to access today.\nPress 1 for checking\nPress 2 savings ?");
                         int checkingOrSaving = scanner.nextInt();
                         scanner.nextLine();
                         if (checkingOrSaving == 1) {
                             // get existing checking account associated with this customer.
                             //CheckingAccount checkingAccountCust1 =new CheckingAccount();
-                            System.out.println("what would like to do with your checking account today ?");
+                            System.out.println("What would like to do with your checking account today ?");
                             System.out.println("Press 1 for deposit\nPress 2 for withdrawal\nPress 3 to check balance");
                             int depositOrWithdrawalOrCheckbalance = scanner.nextInt();
                             if (depositOrWithdrawalOrCheckbalance == 1) {
@@ -100,45 +101,37 @@ public class Runner {
                                 cust.getCheckingAccount().checkbalance();
                             }
 
-                        } else {
-                            System.out.println("sorry you dont exist");
+
+                        } else if (checkingOrSaving==2){
+                            System.out.println("What would like to do with your saving account today ?");
+                            System.out.println("press 1 for deposit\npress 2 for withdrawal\npress 3 to check balance");
+                            int depositOrWithdrawalOrCheckbalance2 = scanner.nextInt();
+                            if (depositOrWithdrawalOrCheckbalance2 == 1){
+                                System.out.println("How much money would you like to deposit ?");
+                                double moneyDeposit = scanner.nextDouble();
+                                cust.getSavingsAccount().deposit(moneyDeposit);
+                                System.out.println("Your current balance is $" + cust.getSavingsAccount().getCurrentBalanceAmount());
+                            }
+                            else if(depositOrWithdrawalOrCheckbalance2 ==2 ){
+                                System.out.println("How much money would you like to withdraw ?");
+                                double moneyWithdraw = scanner.nextDouble();
+                                cust.getSavingsAccount().withdrawal(moneyWithdraw);
+                                System.out.println("Your current balance is $" + cust.getSavingsAccount().getCurrentBalanceAmount()) ;
+                            }
+                            else if(depositOrWithdrawalOrCheckbalance2==3){
+                                cust.getSavingsAccount().checkbalance();
+
+                            }
+                        }
+                        else {
+                            System.out.println("Sorry, You have entered a wrong key. Please try again");
                         }
                     }
 
+                    else{
 
-//
-//                    }else if (checkingOrSaving==2){
-//                        System.out.println("what would like to do with your saving account today ?");
-//                        System.out.println("press 1 for deposit\npress 2 for withdrawal\npress 3 to check balance");
-//                        int depositOrWithdrawalOrCheckbalance2 = scanner.nextInt();
-//                        if (depositOrWithdrawalOrCheckbalance2 == 1){
-//                            System.out.println("How much money would you like to deposit ?");
-//                            double moneyDeposit = scanner.nextDouble();
-//                            tempCust.savingsAccount.deposit(moneyDeposit);
-//                            System.out.println("Your current balance is $" + tempCust.savingsAccount.getCurrentBalanceAmount());
-//                        }
-//                        else if(depositOrWithdrawalOrCheckbalance2 ==2 ){
-//                            System.out.println("How much money would you like to withdraw ?");
-//                            double moneyWithdraw = scanner.nextDouble();
-//                            tempCust.savingsAccount.withdrawal(moneyWithdraw);
-//                            System.out.println("Your current balance is $" + tempCust.savingsAccount.getCurrentBalanceAmount()) ;
-//                        }
-//                        else if(depositOrWithdrawalOrCheckbalance2==3){
-//                            tempCust.savingsAccount.checkbalance();
-//                            // System.out.println("Your current balance is $" + tempCust.checkingAccount.getCurrentBalanceAmount());
-//
-//                        }
-//                    }
-//
-//                }
-//
-
-//
-//
-////            }
-//            else{
-//                System.out.println("Sorry you picked a wrong choice please try again");
-//            }
+                        System.out.println("Sorry you picked a wrong choice please try again");
+            }
 
                 }
 

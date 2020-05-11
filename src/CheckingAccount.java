@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class CheckingAccount {
+public class CheckingAccount implements Accounts {
     private double currentBalanceAmount;
     private double addOrMinusAmount;
     private double newBalance;

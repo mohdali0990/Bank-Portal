@@ -1,9 +1,10 @@
 import java.util.Objects;
 
-public class SavingsAccount {
+public class SavingsAccount implements Accounts {
 
  private double currentBalanceAmount;
  private double newBalance;
+
 
  public void checkbalance(){
   System.out.println("Your current balance is " + currentBalanceAmount);
@@ -20,6 +21,7 @@ public class SavingsAccount {
   currentBalanceAmount = newBalance;
   return currentBalanceAmount;
  }
+
 
  public double getCurrentBalanceAmount() {
   return currentBalanceAmount;
@@ -58,5 +60,7 @@ public class SavingsAccount {
           ", newBalance=" + newBalance +
           '}';
  }
+
+
 }
 
