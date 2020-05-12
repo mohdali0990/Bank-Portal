@@ -7,7 +7,7 @@ public class SavingsAccount implements Accounts {
 
 
  public void checkbalance(){
-  System.out.println("Your current balance is " + currentBalanceAmount);
+  System.out.println("Your current balance is $ " + currentBalanceAmount);
  }
 
  public double deposit(double comingInnAmount){

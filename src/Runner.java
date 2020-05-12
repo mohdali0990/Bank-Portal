@@ -37,7 +37,7 @@ public class Runner {
                 customer.setLastName(newlastName);
                 scanner.nextLine();
 
-                System.out.println("Which account would you like to make:\nPress 1 for Checking\nPress 2 for Savings");
+                System.out.println("Which account would you like to make:\nPress 1 for Checking\nPress 2 for Savings\nPress 3 for both");
                 int checkingOrSavingsAccount = scanner.nextInt();
 
                 if (checkingOrSavingsAccount==1) {
@@ -47,7 +47,7 @@ public class Runner {
                     checkingAccount.setCurrentBalanceAmount(startingCheckingAmount);
                     customer.setCheckingAccount(checkingAccount);
                     custList.add(customer);
-                    System.out.println("Thank you for making a new checking account. ");
+                    System.out.println("Thank you for making a new Checking account. ");
 
                 } else if (checkingOrSavingsAccount==2) {
                     SavingsAccount savingsAccount = new SavingsAccount();
@@ -56,8 +56,23 @@ public class Runner {
                     savingsAccount.setCurrentBalanceAmount(startingSavingAmount);
                     customer.setSavingsAccount(savingsAccount);
                     custList.add(customer);
-                    System.out.println("Thank you for making a new savings account. ");
-                } else {
+                    System.out.println("Thank you for making a new Savings account. ");
+
+                } else if(checkingOrSavingsAccount==3){
+                    CheckingAccount checkingAccount1 = new CheckingAccount();
+                    SavingsAccount savingsAccount1 = new SavingsAccount();
+                    System.out.println("What amount would you like to add into your Checking account ");
+                    double startingCheckingAmount= scanner.nextDouble();
+                    System.out.println("What amount would you like to add into your Savings account");
+                    double startingSavingsAmount = scanner.nextDouble();
+                    checkingAccount1.setCurrentBalanceAmount(startingCheckingAmount);
+                    savingsAccount1.setCurrentBalanceAmount(startingSavingsAmount);
+                    customer.setCheckingAccount(checkingAccount1);
+                    customer.setSavingsAccount(savingsAccount1);
+                    custList.add(customer);//
+                    System.out.println("Thank you for making a new Savings and Checking account.");
+                }
+                else {
                     System.out.println("You have entered the wrong key.");
                 }
 
@@ -69,6 +84,7 @@ public class Runner {
                 System.out.println("Please enter 4 digit pin");
                 int inputUserPin = scanner.nextInt();
                 scanner.nextLine();
+                //Customer cust = new Customer();
                 for (Customer cust : custList) {
                     System.out.println(cust);
                     if (cust.getUserId().equals(inputUsername) && cust.getPinNumber() == inputUserPin) {
