@@ -84,10 +84,9 @@ public class Runner {
                 System.out.println("Please enter 4 digit pin");
                 int inputUserPin = scanner.nextInt();
                 scanner.nextLine();
-                //Customer cust = new Customer();
-                for (Customer cust : custList) {
-                    System.out.println(cust);
-                    if (cust.getUserId().equals(inputUsername) && cust.getPinNumber() == inputUserPin) {
+                for (int i=0;i<custList.size();i++) {
+                      Customer cust = custList.get(i);
+                      if (cust.getUserId().equals(inputUsername) && cust.getPinNumber() == inputUserPin) {
                         System.out.println("Hello,"+ cust.getFirstName()+" I have found you in the system.");
                         System.out.println("Which account would you like to access today.\nPress 1 for checking\nPress 2 savings ?");
                         int checkingOrSaving = scanner.nextInt();
