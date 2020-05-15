@@ -74,6 +74,7 @@ public class Runner {
                 }
                 else {
                     System.out.println("You have entered the wrong key.");
+                    System.out.println("please try again");
                 }
 
             } else if (inputFirstQuestion == 2) {
