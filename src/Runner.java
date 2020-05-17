@@ -12,7 +12,7 @@ public class Runner {
 
         Scanner scanner = new Scanner(System.in);
         List<Customer> custList = new ArrayList<>();
-
+        System.out.println("delete");
         System.out.println("Hello,");
 
         while (true) {
