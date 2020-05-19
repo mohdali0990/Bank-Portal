@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +13,9 @@ public class Runner {
 
         Scanner scanner = new Scanner(System.in);
         List<Customer> custList = new ArrayList<>();
-        System.out.println("delete");
+
         System.out.println("Hello,");
+        System.out.println(", how are you?");
 
         while (true) {
             System.out.println("Would you like to make an account or login ?");
