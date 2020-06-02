@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Objects;
 
-public class SavingsAccount implements Accounts {
+public class SavingsAccount implements Accounts, Serializable {
 
  private double currentBalanceAmount;
  private double newBalance;

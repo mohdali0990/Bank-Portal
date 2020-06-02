@@ -1,12 +1,9 @@
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-//good or bad practice sout statements in main class or original methods.
-//how to have arraylist validate just a few variables not all.
-//why is not remembering the amount values associated with the customer.
 
 public class Runner {
     public static void main(String[] args) {
@@ -15,8 +12,6 @@ public class Runner {
         List<Customer> custList = new ArrayList<>();
 
         System.out.println("Hello,");
-        System.out.println(", how are you?");
-        System.out.println("im great");
 
         while (true) {
             System.out.println("Would you like to make an account or login ?");
@@ -80,9 +75,35 @@ public class Runner {
                     System.out.println("please try again");
                 }
 
+                try {
+                    FileOutputStream file = new FileOutputStream("CustomerData.txt");
+                    ObjectOutputStream outputStream = new ObjectOutputStream(file);
+                    outputStream.writeObject(custList);
+                    outputStream.flush();
+                    outputStream.close();
+
+                }
+                catch (IOException notfound){
+                    notfound.printStackTrace();
+                }
+
+
+
+
             } else if (inputFirstQuestion == 2) {
-                //left it here for a reason.
-                //Customer tempCust = new Customer();
+
+                try {
+                    FileInputStream readData = new FileInputStream("CustomerData.txt");
+                    ObjectInputStream readStream = new ObjectInputStream(readData);
+
+                    ArrayList inputCustomer = (ArrayList<Customer>) readStream.readObject();
+                    readStream.close();
+
+                    System.out.println(inputCustomer.toString());
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
                 System.out.println("Please enter username");
                 String inputUsername = scanner.nextLine();
                 System.out.println("Please enter 4 digit pin");
