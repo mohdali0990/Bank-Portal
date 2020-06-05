@@ -6,14 +6,12 @@ import java.util.Scanner;
 
 
 public class Runner {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         Scanner scanner = new Scanner(System.in);
         List<Customer> custList = new ArrayList<>();
 
         System.out.println("Hello,");
-        System.out.println("added new file");//
-        System.out.println("im testing");
 
         while (true) {
             System.out.println("Would you like to make an account or login ?");
@@ -90,37 +88,28 @@ public class Runner {
                 }
 
 
-
-
             } else if (inputFirstQuestion == 2) {
+                //Had to remove try and catch due to scoping issues.
+                FileInputStream readData = new FileInputStream("CustomerData.txt");
+                ObjectInputStream readStream = new ObjectInputStream(readData);
 
-                try {
-                    FileInputStream readData = new FileInputStream("CustomerData.txt");
-                    ObjectInputStream readStream = new ObjectInputStream(readData);
-
-                    ArrayList inputCustomer = (ArrayList<Customer>) readStream.readObject();
-                    readStream.close();
-
-                    System.out.println(inputCustomer.toString());
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                ArrayList inputCustomer = (ArrayList<Customer>) readStream.readObject();
+                readStream.close();
+                System.out.println(inputCustomer.toString());
 
                 System.out.println("Please enter username");
                 String inputUsername = scanner.nextLine();
                 System.out.println("Please enter 4 digit pin");
                 int inputUserPin = scanner.nextInt();
                 scanner.nextLine();
-                for (int i=0;i<custList.size();i++) {
-                      Customer cust = custList.get(i);
+                for (int i=0;i<inputCustomer.size();i++) {
+                      Customer cust = (Customer) inputCustomer.get(i);//need to understand this type of casting.
                       if (cust.getUserId().equals(inputUsername) && cust.getPinNumber() == inputUserPin) {
                         System.out.println("Hello,"+ cust.getFirstName()+" I have found you in the system.");
-                        System.out.println("Which account would you like to access today.\nPress 1 for checking\nPress 2 savings ?");
+                        System.out.println("Which account would you like to access today.\nPress 1 for checking\nPress 2 savings");
                         int checkingOrSaving = scanner.nextInt();
                         scanner.nextLine();
                         if (checkingOrSaving == 1) {
-                            // get existing checking account associated with this customer.
-                            //CheckingAccount checkingAccountCust1 =new CheckingAccount();
                             System.out.println("What would like to do with your checking account today ?");
                             System.out.println("Press 1 for deposit\nPress 2 for withdrawal\nPress 3 to check balance");
                             int depositOrWithdrawalOrCheckbalance = scanner.nextInt();
@@ -128,11 +117,6 @@ public class Runner {
                                 System.out.println("How much money would you like to deposit ?");
                                 double moneyDeposit = scanner.nextDouble();
                                 cust.getCheckingAccount().deposit(moneyDeposit);
-                                //think it through. watch bahavior when execute line 80 and when line 90 executes.
-                                //checkingAccountCust1.deposit(depositOrWithdrawalOrCheckbalance);
-                                //you need to make changes to this customer.you dont need to make something else or someone else.
-                                //tempCust.setCheckingAccount(checkingAccountCust1);
-                                //System.out.println("Your current balance is $" + tempCust.checkingAccount.getCurrentBalanceAmount());
                                 System.out.println("Your current balance is $" + cust.getCheckingAccount().getCurrentBalanceAmount());
                             } else if (depositOrWithdrawalOrCheckbalance == 2) {
                                 System.out.println("How much money would you like to withdraw ?");
@@ -142,7 +126,6 @@ public class Runner {
                             } else if (depositOrWithdrawalOrCheckbalance == 3) {
                                 cust.getCheckingAccount().checkbalance();
                             }
-
 
                         } else if (checkingOrSaving==2){
                             System.out.println("What would like to do with your saving account today ?");
@@ -162,24 +145,18 @@ public class Runner {
                             }
                             else if(depositOrWithdrawalOrCheckbalance2==3){
                                 cust.getSavingsAccount().checkbalance();
-
                             }
                         }
                         else {
                             System.out.println("Sorry, You have entered a wrong key. Please try again");
                         }
                     }
-
-                    else{
-
-                        System.out.println("Sorry you picked a wrong choice please try again");
-            }
-
                 }
-
-
             }
+            else{
 
+                System.out.println("Sorry you picked a wrong choice please try again");
+            }
 
         }
     }
