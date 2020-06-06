@@ -67,7 +67,7 @@ public class Runner {
                     savingsAccount1.setCurrentBalanceAmount(startingSavingsAmount);
                     customer.setCheckingAccount(checkingAccount1);
                     customer.setSavingsAccount(savingsAccount1);
-                    custList.add(customer);//
+                    custList.add(customer);
                     System.out.println("Thank you for making a new Savings and Checking account.");
                 }
                 else {

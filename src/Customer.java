@@ -26,9 +26,6 @@ public class Customer implements Serializable {
 
     private SavingsAccount savingsAccount ;
 
-    //CheckingAccount checkingAccount = new CheckingAccount();
-   // SavingsAccount savingsAccount = new SavingsAccount();
-
     public String getFirstName() {
         return firstName;
     }
