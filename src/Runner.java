@@ -12,6 +12,7 @@ public class Runner {
         List<Customer> custList = new ArrayList<>();
 
         System.out.println("Hello,");
+        System.out.println("need to to update things today");////
 
         while (true) {
             System.out.println("Would you like to make an account or login ?");
