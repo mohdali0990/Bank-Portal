@@ -13,6 +13,7 @@ public class Runner {
 
         System.out.println("Hello,");
         System.out.println("need to to update things today");////
+        System.out.println("i see");
 
         while (true) {
             System.out.println("Would you like to make an account or login ?");
