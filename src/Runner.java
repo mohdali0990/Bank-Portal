@@ -16,9 +16,9 @@ public class Runner {
             scanner.nextLine();
             Runner runner = new Runner();
             if (inputFirstQuestion == 1) {
-                runner.optionOne(custList);
+                runner.createAccount(custList);
             } else if (inputFirstQuestion == 2) {
-                runner.optionTwo();
+                runner.lookupAccount();
             }
             else{
 
@@ -26,7 +26,7 @@ public class Runner {
             }
         }
     }
-    public ArrayList optionOne(ArrayList custList){
+    public ArrayList createAccount(ArrayList custList){
         Scanner scanner = new Scanner(System.in);
         Customer customer = new Customer();
         System.out.println("Please enter your first name ?");
@@ -97,7 +97,7 @@ public class Runner {
          return(custList);
 
     }
-    public void optionTwo(){
+    public void lookupAccount(){
         Scanner scanner = new Scanner(System.in);
         //Had to remove try and catch due to scoping issues.
         ArrayList inputCustomer=null;
