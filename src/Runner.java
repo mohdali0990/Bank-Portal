@@ -8,6 +8,7 @@ public class Runner {
     public static void main(String[] args)  {
         ArrayList<Customer> custList = new ArrayList<>();
         System.out.println("Hello,");
+        System.out.println("working on mysql");
         while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Would you like to make an account or login ?");
