@@ -8,9 +8,9 @@ public class Runner {
     public static void main(String[] args)  {
         ArrayList<Customer> custList = new ArrayList<>();
         System.out.println("Hello,");
-        System.out.println("working on mysql");
-        System.out.println("worked on primary keys and foriegn keys");
-        System.out.println("updated sql tables");
+//        System.out.println("working on mysql");
+//        System.out.println("worked on primary keys and foriegn keys");
+//        System.out.println("updated sql tables");
         while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Would you like to make an account or login ?");
